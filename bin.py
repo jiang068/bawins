@@ -134,7 +134,7 @@ if not os.path.exists('assets'):
     os.makedirs('assets')
 
 # 初始化变量
-inp = "2.mp4"
+inp = "1.mp4"
 out = "apple_frames"
 max_width = 64
 threshold = 255 * 0.4
