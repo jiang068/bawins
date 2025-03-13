@@ -3,6 +3,8 @@
 
 自己又做了点点改动。
 # 如何生成自定义 Bad Apple Virus ?  
+0、下载[本仓库](https://github.com/jiang068/bawins/archive/refs/heads/master.zip)；  
+
 1、拷贝视频【必须 30fps】到目录里，并重命名为 1.mp4；  
 
 2、打开 cmd，运行
