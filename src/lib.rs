@@ -16,8 +16,8 @@ const WND_CLASS: &str = "BadApple\0";
 
 // get this from `bin.py`
 const MAX_WINDOWS: usize = 300;                       //最多窗口数量
-const BASE_WIDTH: u8 = 64;
-const BASE_HEIGHT: u8 = 48;
+const BASE_WIDTH: u8 = 64;          //定义窗口大小
+const BASE_HEIGHT: u8 = 36;          //4:3-64:48 16:9-64:36 
 
 // Focus on small binary size: width/height are NonZero so Option<>
 // becomes free!
@@ -105,7 +105,7 @@ impl DeferredWindow {
         });
         hnd.set_ignores_mouse_events(true);
         hnd.set_accepts_mouse_moved_events(false);
-        hnd.set_title("Bad Apple!!");
+        hnd.set_title("Madoka");
         hnd.set_background_color(cacao::color::Color::rgb(255, 255, 255));
         hnd.set_is_visible(true);
         hnd.set_has_shadow(false);
@@ -138,7 +138,7 @@ impl DeferredWindow {
                 // WS_EX_TOPMOST | WS_EX_APPWINDOW, // taskbar, Minimize/Maximize/Close
                 WS_EX_TOPMOST | WS_EX_TOOLWINDOW, // no taskbar, Close button only
                 PCSTR(WND_CLASS.as_ptr() as _),
-                s!("Bad Apple!!"),
+                s!("Madoka"),
                 WS_OVERLAPPEDWINDOW,
                 // WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
                 // x,y,w,h
