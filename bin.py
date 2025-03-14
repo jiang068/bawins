@@ -7,7 +7,6 @@ import cv2
 from tqdm import tqdm
 import numpy as np
 
-
 # 定义 frame_to_boxes 函数
 def frame_to_boxes(im: Image, name):
     w, h = im.size
@@ -89,10 +88,6 @@ def frame_to_boxes(im: Image, name):
             ):
                 largest = [x, y, *sublargest]
 
-            # break # debug
-
-        # tqdm.write(f'{largest=}')
-
         # Generally only occurs when the entire frame is black
         if largest is None:
             break
@@ -110,15 +105,7 @@ def frame_to_boxes(im: Image, name):
         ]
         draw.rectangle(box, fill=next(fills))
 
-        # work.show() # debug
-        # exit()
-
-        # break # debug
-
     tqdm.write(f"{len(boxes)=}")
-
-    # im.show()
-    # work.show()
 
     # 检查 frames 目录是否存在，如果不存在则创建
     if not os.path.exists(out):
