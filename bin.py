@@ -120,7 +120,7 @@ def frame_to_boxes(im: Image, name):
     # im.show()
     # work.show()
 
-    # 检查 apple_frames 目录是否存在，如果不存在则创建
+    # 检查 frames 目录是否存在，如果不存在则创建
     if not os.path.exists(out):
         os.makedirs(out)
 
@@ -135,13 +135,13 @@ if not os.path.exists('assets'):
 
 # 初始化变量
 inp = "1.mp4"
-out = "apple_frames"
+out = "frames"
 max_width = 64
 threshold = 255 * 0.4
 
 # 检查 boxes.json 文件是否存在
 if os.path.exists('assets/boxes.json'):
-    # 如果 boxes.json 文件存在，读取文件内容
+    # 如果 boxes.json 文件存在，直接使用
     try:
         with open('assets/boxes.json') as f:
             all_boxes = json.load(f)
@@ -188,19 +188,24 @@ else:
     finally:
         # 释放视频资源
         cap.release()
+        # 删除frames目录
+        if os.path.exists(out):
+            for file in os.listdir(out):
+                os.remove(os.path.join(out, file))
+            os.rmdir(out)
 
         # 保存 boxes.json
         try:
             with open("assets/boxes.json", "w") as f:
                 json.dump(all_boxes, f)
-            print("Successfully saved boxes.json")
+            print("\nSuccessfully saved boxes.json")
         except Exception as e:
-            print(f"Error writing to boxes.json: {e}")
+            print(f"\nError writing to boxes.json: {e}")
             # 将所有帧的矩形框数据保存到 boxes.json 文件中
 
 # 将 boxes.json 转换为 boxes.bin
 try:
-    print("Serialising box-o'-bytes to boxes.bin")
+    print("\nSerialising box-o'-bytes to boxes.bin")
     with open("assets/boxes.bin", "wb") as f:
         for frame in all_boxes:
             for window in frame:
@@ -208,11 +213,4 @@ try:
                 # null window signifies new frame
             f.write(bytes([0, 0, 0, 0]))
 except Exception as e:
-    print(f"Error writing to boxes.bin: {e}")
-
-# whole arrays printed, debug
-# np.set_printoptions(threshold=np.inf)
-
-
-# im = Image.open('bad apple.jpg')
-# frame_to_boxes(im, 'test')
+    print(f"\nError writing to boxes.bin: {e}")
