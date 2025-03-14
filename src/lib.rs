@@ -14,7 +14,7 @@ pub mod windows;
 #[cfg(target_os = "windows")]
 const WND_CLASS: &str = "BadApple\0";
 
-// get this from `bad apple.py`
+// get this from `bin.py`
 const MAX_WINDOWS: usize = 300;                       //最多窗口数量
 const BASE_WIDTH: u8 = 64;
 const BASE_HEIGHT: u8 = 48;
