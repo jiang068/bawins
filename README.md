@@ -5,7 +5,14 @@
 # 如何生成自定义 Bad Apple Virus ?  
 0、下载[本仓库](https://github.com/jiang068/bawins/archive/refs/heads/master.zip)；  
 
-1、拷贝视频【必须 30fps】到目录里，并重命名为 1.mp4；  
+1、拷贝视频【必须 30fps 】到目录里，并重命名为 1.mp4；  
+
+(如果你的视频比例为 16:9 就继续进入第2步，  
+
+如果是 4:3, 请前往 src/lib.rs, 在第20行左右找到  
+
+    const BASE_HEIGHT: u8 = 36;          //4:3-64:48 16:9-64:36 
+将 36 改为 48, 并保存.)  
 
 2、打开 cmd，运行
 
